@@ -63,46 +63,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // मुख्य "Convert to Speech" बटन का लॉजिक
-    speakBtn.addEventListener('click', async () => {
-        const text = textInput.value.trim();
-        if (!text) {
-            alert('Please enter some text.');
-            return;
+   speakBtn.addEventListener('click', async () => {
+    const text = textInput.value.trim();
+    if (!text) {
+        alert('Please enter some text.');
+        return;
+    }
+    if (!selectedVoiceName) {
+        alert('Please select a voice first.');
+        return;
+    }
+
+    ttsStatus.innerHTML = '<i class="fa-solid fa-spinner"></i> Generating audio...';
+    ttsStatus.classList.add('loading');
+    audioPlayer.style.display = 'none';
+
+    try {
+        // --- यह मुख्य बदलाव है ---
+        const rate = parseFloat(rateSlider.value); // वैल्यू को नंबर में बदलना
+        const pitchValue = parseFloat(pitchSlider.value); // वैल्यू को नंबर में बदलना
+        
+        // हमारी 0-2 की रेंज को गूगल की -20 से +20 की रेंज में बदलना
+        const pitch = (pitchValue - 1) * 20; 
+
+        const response = await fetch('/.netlify/functions/text-to-speech', {
+            method: 'POST',
+            body: JSON.stringify({
+                text: text,
+                voiceName: selectedVoiceName,
+                speakingRate: rate, // अब यह सही नंबर है
+                pitch: pitch      // अब यह सही रेंज और नंबर है
+            })
+        });
+        // --- बदलाव यहाँ खत्म ---
+
+        if (!response.ok) {
+            // सर्वर से मिले एरर को दिखाना
+            const errorData = await response.json();
+            console.error('API Error:', errorData);
+            throw new Error('Failed to generate audio. Please check the function logs on Netlify.');
         }
 
-        ttsStatus.innerHTML = '<i class="fa-solid fa-spinner"></i> Generating audio...';
-        ttsStatus.classList.add('loading');
-        audioPlayer.style.display = 'none';
+        const data = await response.json();
+        const audioSrc = `data:audio/mp3;base64,${data.audioContent}`;
+        
+        audioPlayer.src = audioSrc;
+        audioPlayer.classList.add('show'); // CSS क्लास से दिखाएं
+        audioPlayer.style.display = 'block';
+        audioPlayer.play();
 
-        try {
-            const response = await fetch('/.netlify/functions/text-to-speech', {
-                method: 'POST',
-                body: JSON.stringify({
-                    text: text,
-                    voiceName: selectedVoiceName,
-                    speakingRate: rateSlider.value,
-                    pitch: pitchSlider.value - 1 // Pitch is from -20 to 20, we adjust from our 0-2 slider
-                })
-            });
+        ttsStatus.innerHTML = 'Audio ready! Playing...';
+        ttsStatus.classList.remove('loading');
 
-            if (!response.ok) {
-                throw new Error('Failed to generate audio.');
-            }
-
-            const data = await response.json();
-            const audioSrc = `data:audio/mp3;base64,${data.audioContent}`;
-            
-            audioPlayer.src = audioSrc;
-            audioPlayer.style.display = 'block';
-            audioPlayer.play();
-
-            ttsStatus.innerHTML = 'Audio ready!';
-            ttsStatus.classList.remove('loading');
-
-        } catch (error) {
-            console.error('Error:', error);
-            ttsStatus.textContent = 'Error! Could not generate audio.';
-            ttsStatus.classList.remove('loading');
-        }
-    });
+    } catch (error) {
+        console.error('Error:', error);
+        ttsStatus.textContent = 'Error! Could not generate audio.';
+        ttsStatus.classList.remove('loading');
+    }
 });
