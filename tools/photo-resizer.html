@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passport Photo Resizer - TheToolDrawer</title>
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/tools/photo-resizer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/tools/photo-resizer.js" defer></script>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">TheToolDrawer</a>
+
+            <div class="nav-center">
+                <div class="search-wrapper">
+                    <input type="text" id="search-bar" placeholder="Search for a tool...">
+                    <button class="search-button" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" />
+                        <div class="slider round">
+                            <i class="fa-solid fa-sun sun-icon"></i>
+                            <i class="fa-solid fa-moon moon-icon"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1> Photo Resizer</h1>
+                <p>Upload, crop, and resize your photo to desired dimensions.</p>
+            </div>
+
+            <div class="photo-resizer-app">
+                <div class="upload-section" id="upload-section">
+                    <label for="image-input" class="drop-zone">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Click to Upload or Drag & Drop</span>
+                        <p>Supports: JPG, PNG, WEBP</p>
+                    </label>
+                    <input type="file" id="image-input" accept="image/*" hidden>
+                </div>
+
+                <div class="editor-main-area" id="editor-area" style="display: none;">
+                    <div class="image-editor-container">
+                        <div class="image-wrapper">
+                            <img id="source-image" src="" alt="Source Image">
+                        </div>
+                        <div class="cropper-toolbar">
+                            <button id="zoom-in-btn" title="Zoom In"><i
+                                    class="fa-solid fa-magnifying-glass-plus"></i></button>
+                            <button id="zoom-out-btn" title="Zoom Out"><i
+                                    class="fa-solid fa-magnifying-glass-minus"></i></button>
+                            <button id="rotate-btn" title="Rotate"><i class="fa-solid fa-rotate-right"></i></button>
+                            <button id="reset-btn" title="Reset"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="preview-and-download-container">
+                        <h3>Preview</h3>
+                        <div class="preview-box">
+                        </div>
+
+                        <div class="customization-options">
+
+                            <div class="option-group">
+                                <label>Aspect Ratio</label>
+                                <div class="preset-ratios">
+                                    <button class="ratio-btn" data-ratio="1.7777">16:9</button>
+                                    <button class="ratio-btn" data-ratio="1.3333">4:3</button>
+                                    <button class="ratio-btn active" data-ratio="1">1:1</button>
+                                    <button class="ratio-btn" data-ratio="0.6666">2:3</button>
+                                    <button class="ratio-btn" data-ratio="NaN">Free</button>
+                                </div>
+                            </div>
+
+                            <div class="option-group">
+                                <label>Output Dimensions (px)</label>
+                                <div class="custom-dimensions">
+                                    <input type="number" id="output-width" placeholder="Width">
+                                    <span>&times;</span>
+                                    <input type="number" id="output-height" placeholder="Height">
+                                </div>
+                            </div>
+
+                            <div class="option-group">
+                                <div class="quality-header">
+                                    <label for="quality-slider">JPEG Quality</label>
+                                    <span id="quality-value">90%</span>
+                                </div>
+                                <input type="range" id="quality-slider" min="10" max="100" value="90">
+                            </div>
+
+                        </div>
+
+                        <div class="final-actions">
+                            <button id="crop-download-btn" class="btn btn-primary btn-large">
+                                <i class="fa-solid fa-crop-simple"></i> Crop & Download
+                            </button>
+                            <button id="upload-new-btn" class="btn btn-secondary">Upload New Image</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 TheToolDrawer. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>

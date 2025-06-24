@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced QR Code Generator - TheToolDrawer</title>
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/tools/qr-code-generator.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/tools/qr-code-generator.js" defer></script>
+</head>
+
+<body id="top">
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="../index.html" class="logo">TheToolDrawer</a>
+            <div class="nav-center">
+                <div class="search-wrapper">
+                    <input type="text" id="search-bar" placeholder="Search for a tool...">
+                    <button class="search-button" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                </ul>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" />
+                        <div class="slider round">
+                            <i class="fa-solid fa-sun sun-icon"></i>
+                            <i class="fa-solid fa-moon moon-icon"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="qr-app-container">
+            <div class="qr-app-main">
+                <div class="qr-type-tabs">
+                    <button class="tab-link active" data-tab="url"><i
+                            class="fa-solid fa-link"></i><span>URL</span></button>
+                    <button class="tab-link" data-tab="text"><i class="fa-solid fa-t"></i><span>Text</span></button>
+                    <button class="tab-link" data-tab="email"><i
+                            class="fa-solid fa-envelope"></i><span>Email</span></button>
+                    <button class="tab-link" data-tab="profile"><i
+                            class="fa-solid fa-id-card"></i><span>Profile</span></button>
+                    <button class="tab-link" data-tab="wifi"><i class="fa-solid fa-wifi"></i><span>WiFi</span></button>
+
+                    <button class="tab-link" data-tab="vcard"><i
+                            class="fa-solid fa-address-card"></i><span>vCard</span></button>
+                    <button class="tab-link" data-tab="whatsapp"><i
+                            class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></button>
+                    <button class="tab-link" data-tab="sms"><i
+                            class="fa-solid fa-comment-sms"></i><span>SMS</span></button>
+                    <button class="tab-link" data-tab="phone"><i
+                            class="fa-solid fa-phone"></i><span>Phone</span></button>
+                    <button class="tab-link" data-tab="event"><i
+                            class="fa-solid fa-calendar-plus"></i><span>Event</span></button>
+                    <button class="tab-link" data-tab="social"><i
+                            class="fa-solid fa-share-nodes"></i><span>Social</span></button>
+                    <button class="tab-link " data-tab="pdf" title="Feature Under Maintenance">
+                        <i class="fa-solid fa-file-pdf"></i><span>PDF</span>
+                    </button>
+                    <button class="tab-link " data-tab="image" title="Coming Soon!"><i
+                            class="fa-solid fa-image"></i><span>Image</span></button>
+                </div>
+
+                <div class="qr-input-area">
+                    <div class="tab-content active" id="form-url">
+                        <h2 class="tab-title">Enter your website URL</h2>
+                        <div class="input-group">
+                            <label for="qr-url-input">Your URL</label>
+                            <input type="url" id="qr-url-input" placeholder="https://example.com">
+                        </div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+                    <div class="tab-content" id="form-text">
+                        <h2 class="tab-title">Enter your text</h2>
+                        <div class="input-group">
+                            <label for="qr-text-input">Your Text</label>
+                            <textarea id="qr-text-input" rows="4" placeholder="Enter any text"></textarea>
+                        </div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+                    <div class="tab-content" id="form-email">
+                        <h2 class="tab-title">Create an Email QR Code</h2>
+                        <div class="input-group"><label>To (Email Address)</label><input type="email" id="email-to"
+                                placeholder="email@example.com"></div>
+                        <div class="input-group"><label>Subject</label><input type="text" id="email-subject"
+                                placeholder="Email Subject"></div>
+                        <div class="input-group"><label>Message</label><textarea id="email-body" rows="3"
+                                placeholder="Your message..."></textarea></div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+                    <div class="tab-content" id="form-wifi">
+                        <h2 class="tab-title">Create a WiFi QR Code</h2>
+                        <div class="input-group"><label>Network Name (SSID)</label><input type="text" id="wifi-ssid"
+                                placeholder="MyHomeWiFi"></div>
+                        <div class="input-group"><label>Password</label><input type="password" id="wifi-password"></div>
+                        <div class="input-group"><label>Encryption</label><select id="wifi-encryption">
+                                <option value="WPA" selected>WPA/WPA2</option>
+                                <option value="WEP">WEP</option>
+                                <option value="nopass">None</option>
+                            </select></div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+                    <div class="tab-content" id="form-vcard">
+                        <h2 class="tab-title">Create a vCard QR Code</h2>
+                        <div class="input-grid">
+                            <div class="input-group"><label>First Name</label><input type="text" id="vcard-firstname">
+                            </div>
+                            <div class="input-group"><label>Last Name</label><input type="text" id="vcard-lastname">
+                            </div>
+                            <div class="input-group"><label>Phone</label><input type="tel" id="vcard-phone"></div>
+                            <div class="input-group"><label>Email</label><input type="email" id="vcard-email"></div>
+                        </div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+
+                    <div class="tab-content" id="form-whatsapp">
+                        <h2 class="tab-title">Create a WhatsApp QR Code</h2>
+                        <div class="input-group">
+                            <label for="whatsapp-phone">Phone Number (with country code)</label>
+                            <input type="tel" id="whatsapp-phone" placeholder="e.g., 919876543210">
+                        </div>
+                        <div class="input-group">
+                            <label for="whatsapp-message">Pre-filled Message (Optional)</label>
+                            <textarea id="whatsapp-message" rows="3" placeholder="Enter your message..."></textarea>
+                        </div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+
+
+                    <div class="tab-content" id="form-sms">
+                        <h2 class="tab-title">Create an SMS QR Code</h2>
+                        <div class="input-group">
+                            <label for="sms-phone">Phone Number (with country code)</label>
+                            <input type="tel" id="sms-phone" placeholder="e.g., 919876543210">
+                        </div>
+                        <div class="input-group">
+                            <label for="sms-message">Message</label>
+                            <textarea id="sms-message" rows="4" placeholder="Enter your SMS message..."></textarea>
+                        </div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+
+
+
+                    <div class="tab-content" id="form-phone">
+                        <h2 class="tab-title">Create a Phone Call QR Code</h2>
+                        <div class="input-group">
+                            <label for="phone-number">Phone Number (with country code)</label>
+                            <input type="tel" id="phone-number" placeholder="e.g., +919876543210">
+                        </div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+
+
+
+                    <div class="tab-content" id="form-event">
+                        <h2 class="tab-title">Create a Calendar Event QR Code</h2>
+                        <div class="input-group">
+                            <label for="event-summary">Event Title</label>
+                            <input type="text" id="event-summary" placeholder="e.g., Team Meeting">
+                        </div>
+                        <div class="input-group">
+                            <label for="event-location">Location</label>
+                            <input type="text" id="event-location" placeholder="e.g., Office Conference Room">
+                        </div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="event-dtstart">Start Time</label>
+                                <input type="datetime-local" id="event-dtstart">
+                            </div>
+                            <div class="input-group">
+                                <label for="event-dtend">End Time</label>
+                                <input type="datetime-local" id="event-dtend">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="event-description">Description</label>
+                            <textarea id="event-description" rows="3" placeholder="e.g., Agenda discussion"></textarea>
+                        </div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+
+                    <div class="tab-content" id="form-social">
+                        <h2 class="tab-title">Create a Social Media QR Code</h2>
+                        <div class="input-group">
+                            <label for="social-platform">Select Platform</label>
+                            <select id="social-platform">
+                                <option value="twitter" selected>Twitter (X)</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="youtube">YouTube</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="social-username">Your Username or Handle</label>
+                            <div class="input-with-prefix">
+                                <span class="url-prefix" id="social-url-prefix">https://twitter.com/</span>
+                                <input type="text" id="social-username" placeholder="YourUsername">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate QR
+                            Code</button>
+                    </div>
+
+
+
+
+
+                    <div class="tab-content" id="form-profile">
+                        <h2 class="tab-title">Create Your Digital Profile Card</h2>
+
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="profile-name">Full Name</label>
+                                <input type="text" id="profile-name" placeholder="e.g., Anjali Sharma">
+                            </div>
+                            <div class="input-group">
+                                <label for="profile-headline">Headline / Job Title</label>
+                                <input type="text" id="profile-headline" placeholder="e.g., Software Developer">
+                            </div>
+                        </div>
+
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="profile-email">Email</label>
+                                <input type="email" id="profile-email" placeholder="e.g., anjali@example.com">
+                            </div>
+                            <div class="input-group">
+                                <label for="profile-phone">Phone Number</label>
+                                <input type="tel" id="profile-phone" placeholder="e.g., +919876543210">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="profile-address">Address</label>
+                            <input type="text" id="profile-address" placeholder="e.g., Mumbai, India">
+                        </div>
+
+                        <h3 class="subsection-title">Social Media Links</h3>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label for="social-linkedin">LinkedIn Username</label>
+                                <input type="text" id="social-linkedin" placeholder="anjali-sharma-dev">
+                            </div>
+                            <div class="input-group">
+                                <label for="social-twitter">Twitter (X) Handle</label>
+                                <input type="text" id="social-twitter" placeholder="anjali_dev">
+                            </div>
+                            <div class="input-group">
+                                <label for="social-github">GitHub Username</label>
+                                <input type="text" id="social-github" placeholder="anjalisharma">
+                            </div>
+                            <div class="input-group">
+                                <label for="social-instagram">Instagram Username</label>
+                                <input type="text" id="social-instagram" placeholder="anjali.codes">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary generate-qr-btn"><i class="fa-solid fa-qrcode"></i> Generate
+                            Profile QR Code</button>
+                    </div>
+
+
+
+
+                    <div class="tab-content" id="form-pdf">
+                        <div class="maintenance-notice">
+                            <i class="fa-solid fa-person-digging"></i>
+                            <h2>Feature Under Maintenance</h2>
+                            <p>We are currently working on improving this feature. Please check back later.</p>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="form-image">
+                        <div class="maintenance-notice">
+                            <i class="fa-solid fa-person-digging"></i>
+                            <h2>Feature Under Maintenance</h2>
+                            <p>We are working on this feature and will launch it soon.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qr-app-sidebar">
+
+                <div class="qr-preview-container">
+                    <div id="qrcode-preview">
+                    </div>
+                    <div class="download-options">
+                        <button id="download-png-btn" class="download-btn" style="display: none;">PNG</button>
+                        <button id="download-svg-btn" class="download-btn" style="display: none;">SVG</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="download-options">
+                <button id="download-png-btn" class="download-btn" style="display: none;">PNG</button>
+                <button id="download-svg-btn" class="download-btn" style="display: none;">SVG</button>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 TheToolDrawer. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

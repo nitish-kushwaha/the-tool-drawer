@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter Tool - TheToolDrawer</title>
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/tools/word-counter.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/tools/word-counter.js" defer></script>
+</head>
+
+<body id="top">
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="../index.html" class="logo">TheToolDrawer</a>
+
+            <div class="nav-center">
+                <div class="search-wrapper">
+                    <input type="text" id="search-bar" placeholder="Search for a tool...">
+                    <button class="search-button" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                </ul>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" />
+                        <div class="slider round">
+                            <i class="fa-solid fa-sun sun-icon"></i>
+                            <i class="fa-solid fa-moon moon-icon"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1>Word Counter</h1>
+                <p>Instantly count words, characters, sentences, and paragraphs in your text.</p>
+            </div>
+
+            <div class="word-counter-app">
+                <textarea id="text-input" placeholder="Type or paste your text here..." spellcheck="true"></textarea>
+
+                <div class="sidebar-stats">
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <h3 class="stat-label">Words</h3>
+                            <span class="stat-number" id="words-count">0</span>
+                        </div>
+                        <div class="stat-box">
+                            <h3 class="stat-label">Characters</h3>
+                            <span class="stat-number" id="chars-count">0</span>
+                        </div>
+                        <div class="stat-box">
+                            <h3 class="stat-label">Sentences</h3>
+                            <span class="stat-number" id="sentences-count">0</span>
+                        </div>
+                        <div class="stat-box">
+                            <h3 class="stat-label">Paragraphs</h3>
+                            <span class="stat-number" id="paragraphs-count">0</span>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="copy-btn" class="btn btn-secondary"><i class="fa-solid fa-copy"></i> Copy
+                            Text</button>
+                        <button id="clear-btn" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Clear
+                            Text</button>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 TheToolDrawer. All Rights Reserved.</p>
+    </footer>
+
+    <a href="#top" id="back-to-top-btn" title="Go to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+</body>
+
+</html>

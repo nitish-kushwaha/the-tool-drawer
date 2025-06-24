@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - TheToolDrawer</title>
+    
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/tools/age-calculator.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/tools/age-calculator.js" defer></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="../index.html" class="logo">TheToolDrawer</a>
+            <div class="nav-center">
+                <div class="search-wrapper">
+                    <input type="text" id="search-bar" placeholder="Search for a tool...">
+                    <button class="search-button" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                </ul>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" />
+                        <div class="slider round">
+                            <i class="fa-solid fa-sun sun-icon"></i>
+                            <i class="fa-solid fa-moon moon-icon"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1><i class="fa-solid fa-cake-candles"></i> Age Calculator</h1>
+                <p>Calculate your age accurately down to the day.</p>
+            </div>
+
+            <div class="age-calculator-app">
+                <form id="age-form">
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label for="user-name">Full Name</label>
+                            <input type="text" id="user-name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="dob-input">Date of Birth</label>
+                            <input type="date" id="dob-input" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="contact-details">Contact Info (Optional)</label>
+                        <input type="text" id="contact-details" placeholder="e.g., your_email@example.com">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fa-solid fa-calculator"></i> Calculate Age
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+   <div id="result-modal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="close-btn" id="close-modal-btn">&times;</button>
+        <div id="result-card">
+            <h2>Calculation Result</h2>
+            <div class="result-line">
+                <strong>Name:</strong> <span id="result-name"></span>
+            </div>
+            <div class="result-line">
+                <strong>Date of Birth:</strong> <span id="result-dob"></span>
+            </div>
+            
+            <h3 class="age-title">You are exactly...</h3>
+            <div class="age-breakdown">
+                <div class="age-box">
+                    <span id="result-years">0</span>
+                    <label>Years</label>
+                </div>
+                <div class="age-box">
+                    <span id="result-months">0</span>
+                    <label>Months</label>
+                </div>
+                <div class="age-box">
+                    <span id="result-days">0</span>
+                    <label>Days</label>
+                </div>
+                <div class="age-box">
+                    <span id="result-hours">0</span>
+                    <label>Hours</label>
+                </div>
+                <div class="age-box">
+                    <span id="result-minutes">0</span>
+                    <label>Minutes</label>
+                </div>
+                <div class="age-box">
+                    <span id="result-seconds">0</span>
+                    <label>Seconds</label>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                 <button id="download-pdf-btn" class="btn btn-secondary">
+                    <i class="fa-solid fa-file-pdf"></i> Download as PDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   <footer class="main-footer">
+        <p>&copy; 2025 TheToolDrawer. All Rights Reserved.</p>
+    </footer>
+    
+</body>
+</html>

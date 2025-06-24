@@ -1,0 +1,182 @@
+/* =================================================================
+   केस कन्वर्टर - फाइनल क्लीन CSS
+   ================================================================= */
+.tool-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.tool-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.tool-header h1 {
+    font-size: 2.5rem;
+}
+
+.tool-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+.case-converter-app {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+}
+
+@media (min-width: 768px) {
+    .case-converter-app {
+        padding: 2rem;
+    }
+}
+
+/* मुख्य 2-कॉलम ग्रिड */
+.app-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 992px) {
+    .app-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* इनपुट और आउटपुट कॉलम */
+.input-column,
+.output-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-column label,
+.output-column label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+#input-text,
+#output-text {
+    width: 100%;
+    flex-grow: 1;
+    min-height: 250px;
+    padding: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+#input-text:focus,
+#output-text:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px var(--shadow-color);
+}
+
+/* केस बदलने वाले बटन्स */
+.conversion-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.case-btn {
+    padding: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--bg-color);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    transition: all .2s ease-in-out;
+}
+
+.case-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.case-btn:active {
+    transform: translateY(-1px) scale(.98);
+}
+
+/* नया वर्ड काउंटर */
+.output-stats {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    padding: 0.75rem 0.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.output-stats strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* यूटिलिटी बटन्स */
+.utility-buttons-left,
+.utility-buttons-right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.util-btn {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: 10px 15px;
+    font-size: .9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s ease;
+    border: 1px solid transparent;
+}
+
+/* यूटिलिटी बटन्स के अलग-अलग स्टाइल */
+.utility-buttons-right #btn-copy {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.utility-buttons-right #btn-copy:hover {
+    background-color: var(--accent-hover);
+}
+
+.utility-buttons-right #btn-download {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+.utility-buttons-right #btn-download:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+/* .btn-danger क्लास main.css से आएगी */

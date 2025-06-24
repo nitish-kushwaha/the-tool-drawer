@@ -1,0 +1,216 @@
+/* =================================================================
+   ऐज कैलकुलेटर की स्टाइलिंग
+   ================================================================= */
+.tool-container {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.age-calculator-app {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+}
+
+#age-form .input-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+@media (min-width: 600px) {
+    #age-form .input-grid { grid-template-columns: 1fr 1fr; }
+}
+
+#age-form .input-group { margin-bottom: 1.5rem; }
+#age-form label {
+    display: block; font-weight: 600;
+    color: var(--text-secondary); margin-bottom: 0.5rem;
+}
+#age-form input {
+    width: 100%; padding: 12px; font-size: 1rem;
+    border-radius: 8px; border: 1px solid var(--border-color);
+    background-color: var(--bg-color); color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+#age-form input:focus {
+    outline: none; border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+#age-form .btn-large {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    /* नया एनिमेटेड ग्रेडिएंट */
+    background: linear-gradient(90deg, var(--accent-hover), var(--accent-color), var(--gradient-end), var(--accent-hover));
+    background-size: 300% 100%;
+    transition: background-position 0.5s ease;
+}
+
+#age-form .btn-large:hover {
+    background-position: 100% 0; /* होवर पर शिमर इफ़ेक्ट */
+}
+/* =================================================================
+   पॉपअप/मॉडल की स्टाइलिंग
+   ================================================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none; /* JS इसे flex में बदलेगा */
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: slideIn 0.4s ease-out;
+}
+@keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.close-btn {
+    position: absolute;
+    top: 10px; right: 20px;
+    font-size: 2.5rem;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#result-card h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+.result-line {
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+}
+.result-line strong {
+    color: var(--text-primary);
+}
+
+.age-title {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 1.5rem 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.age-breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+.age-box {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+}
+.age-box span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+.age-box label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+@media (max-width: 500px) {
+    .age-breakdown { grid-template-columns: repeat(2, 1fr); }
+}
+
+.modal-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+
+
+/* tool header ki design */
+
+.tool-header {
+    text-align: center;
+    margin-bottom: 2.5rem; /* थोड़ा ज़्यादा स्पेस */
+}
+
+.tool-header h1 {
+    font-size: 2.8rem; /* थोड़ा बड़ा फ़ॉन्ट */
+    color: var(--text-primary);
+    display: flex; /* आइकॉन और टेक्स्ट को अलाइन करने के लिए */
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* आइकॉन और टेक्स्ट के बीच स्पेस */
+}
+
+.tool-header h1 i {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+}
+
+.tool-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+    max-width: 400px; /* सबटाइटल को बहुत ज़्यादा फैलने से रोकना */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* =================================================================
+   पॉपअप के डाउनलोड बटन का फाइनल, सही स्टाइल
+   ================================================================= */
+#download-pdf-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff; /* टेक्स्ट का रंग हमेशा सफेद रहेगा */
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    
+    /* ग्रेडिएंट बैकग्राउंड अब हमेशा रहेगा */
+    background: linear-gradient(90deg, var(--accent-hover), var(--accent-color), var(--gradient-end), var(--accent-hover));
+    background-size: 300% 100%;
+    transition: background-position 0.5s ease;
+}
+
+#download-pdf-btn:hover {
+    background-position: 100% 0;
+    color: #fff; /* होवर पर भी टेक्स्ट सफेद रहेगा */
+}

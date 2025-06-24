@@ -1,0 +1,433 @@
+/* =================================================================
+   1. ब्लॉग पेज का हेडर (Page Header)
+   ================================================================= */
+.page-header {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+/* =================================================================
+   2. ब्लॉग कंटेनर और कार्ड्स (Blog Container & Cards)
+   ================================================================= */
+.blog-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* मोबाइल पर डिफ़ॉल्ट एक कॉलम */
+    gap: 2rem;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.blog-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    /* यह सुनिश्चित करता है कि कंटेंट कोनों से बाहर न जाए */
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+    /* कार्ड्स के लिए एंट्रेंस एनिमेशन */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardFadeIn 0.6s ease-out forwards;
+}
+
+/* हर कार्ड को एक-एक करके दिखाने के लिए (Staggered Animation) */
+.blog-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.blog-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* (आप और कार्ड्स के लिए इसे जारी रख सकते हैं) */
+
+@keyframes cardFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 15px -3px var(--shadow-color);
+}
+
+.blog-card-content {
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* यह सुनिश्चित करता है कि कार्ड की ऊंचाई बराबर हो */
+}
+
+.blog-card-category {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    align-self: flex-start;
+    /* यह कैटेगरी टैग को कंटेंट की शुरुआत में रखता है */
+    margin-bottom: 1rem;
+}
+
+.blog-card-title {
+    font-size: 1.6rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+}
+
+.blog-card-title:hover {
+    color: var(--accent-color);
+}
+
+.blog-card-excerpt {
+    color: var(--text-secondary);
+    flex-grow: 1;
+    /* यह excerpt को बची हुई जगह लेने देता है */
+    margin-bottom: 1.5rem;
+}
+
+.blog-card-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    /* यह बटनों को कार्ड के नीचे धकेलता है */
+}
+
+/* =================================================================
+   3. बटन्स स्टाइल (Buttons Style)
+   ================================================================= */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn i {
+    margin-left: 0.5rem;
+}
+
+/* =================================================================
+   4. रेस्पॉन्सिव डिज़ाइन (Responsive Design)
+   ================================================================= */
+@media (min-width: 768px) {
+    /* बड़े स्क्रीन पर दो कॉलम का ग्रिड */
+    /* .blog-container {
+        grid-template-columns: repeat(2, 1fr);
+    } */
+    /* फिलहाल एक कॉलम का लेआउट ही बेहतर और पढ़ने में आसान है। */
+}
+
+
+
+/* =================================================================
+   5. पेजिनेशन स्टाइल (Pagination Style)
+   ================================================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+.pagination-link,
+.pagination-ellipsis {
+    color: var(--text-secondary);
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.pagination-link:hover {
+    color: var(--accent-color);
+    background-color: var(--shadow-color);
+    border-color: var(--border-color);
+}
+
+.pagination-link.active {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+}
+
+.pagination-link.disabled {
+    color: var(--border-color);
+    cursor: not-allowed;
+}
+
+.pagination-link.disabled:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+
+
+
+
+/* =================================================================
+   6. नया सिंगल पोस्ट लेआउट (New Single Post Layout) - साइडबार के साथ
+   ================================================================= */
+
+/* लेआउट बनाने वाला मुख्य ग्रिड */
+.post-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* मोबाइल पर डिफ़ॉल्ट एक कॉलम */
+    gap: 3rem;
+    /* कंटेंट और साइडबार के बीच स्पेस */
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+/* 992px से बड़ी स्क्रीन पर दो कॉलम का लेआउट */
+@media (min-width: 992px) {
+    .post-layout {
+        grid-template-columns: 2.5fr 1fr;
+        /* मुख्य कंटेंट साइडबार से 2.5 गुना बड़ा */
+    }
+}
+
+/* कंटेंट एरिया की स्टाइलिंग */
+.post-content-area {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+@media (min-width: 768px) {
+    .post-content-area {
+        padding: 3rem;
+    }
+}
+
+/* नया टाइटल और मेटा स्टाइल */
+.post-header {
+    text-align: left;
+    /* लेफ्ट अलाइन */
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.post-category-new {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.post-title-new {
+    font-size: 3rem;
+    /* बड़ा और प्रभावशाली */
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.post-meta {
+    justify-content: flex-start;
+    /* लेफ्ट अलाइन */
+    gap: 0.75rem;
+}
+
+/* फीचर इमेज स्टाइल */
+.post-feature-image {
+    margin: 2rem 0;
+}
+
+.post-feature-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.post-feature-image figcaption {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+
+/* साइडबार की स्टाइलिंग */
+.sidebar .sidebar-widget {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.widget-title {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: block;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar ul li:last-child a {
+    border-bottom: none;
+}
+
+.sidebar ul li a:hover {
+    color: var(--accent-color);
+    padding-left: 10px;
+}
+
+/* (पुराना .post-container और .post-header का कोड इस नए कोड से बदल गया है, बाकी जैसे .post-content आदि का कोड वैसा ही रहेगा) */
+
+
+
+/* =================================================================
+   7. पोस्टर CTA और साइडबार CTA की स्टाइलिंग
+   ================================================================= */
+
+/* पोस्ट के अंत में पोस्टर CTA */
+.post-cta-poster {
+    margin-top: 3rem;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-cta-poster h2 {
+    color: #fff;
+    font-size: 2.2rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.post-cta-poster p {
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 500px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.btn-cta {
+    background-color: #fff;
+    color: var(--accent-hover);
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.btn-cta:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* साइडबार CTA */
+.sidebar-cta {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+    text-align: center;
+}
+
+.sidebar-cta h4 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-cta p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-cta .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #fff;
+    color: #fff;
+    width: 100%;
+}
+
+.sidebar-cta .btn-secondary:hover {
+    background-color: #fff;
+    color: var(--accent-hover);
+}

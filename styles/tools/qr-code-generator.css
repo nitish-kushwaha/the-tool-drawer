@@ -1,0 +1,393 @@
+/* =================================================================
+   QR कोड जेनरेटर - एडवांस्ड डिज़ाइन CSS
+   ================================================================= */
+main {
+    padding: 2rem 1rem;
+    background-color: var(--bg-color);
+}
+
+.qr-app-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* मोबाइल पर एक कॉलम */
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .qr-app-container {
+        grid-template-columns: 1.5fr 1fr;
+        /* डेस्कटॉप पर दो कॉलम */
+    }
+}
+
+/* =================================================================
+   1. मुख्य एप्लीकेशन पैनल (बाईं ओर)
+   ================================================================= */
+.qr-app-main {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* टैब सिस्टम */
+.qr-type-tabs {
+    display: flex;
+    flex-wrap: wrap; /* यह मुख्य बदलाव है, जो टैब्स को अगली लाइन में भेजेगा */
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    padding: 0.25rem; /* टैब्स के चारों ओर थोड़ा स्पेस */
+}
+
+.tab-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: transparent; border: none; padding: 1rem 1.25rem;
+    cursor: pointer; font-size: 0.9rem; font-weight: 600;
+    color: var(--text-secondary); border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    /* white-space: nowrap; को यहाँ से हटा दिया गया है */
+}
+.tab-link:hover {
+    color: var(--text-primary);
+}
+
+.tab-link.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+.tab-link.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* इनपुट एरिया */
+.qr-input-area {
+    padding: 1.5rem;
+    flex-grow: 1;
+    /* यह सुनिश्चित करता है कि यह हिस्सा बची हुई जगह ले ले */
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .qr-input-area {
+        padding: 2rem;
+    }
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    /* फ्लेक्स की जगह ब्लॉक, ताकि बटन नीचे न जाए */
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.tab-content h1,
+.tab-content h2 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.tab-content p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 500px) {
+    .input-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.generate-qr-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    /* अब यह हमेशा इनपुट से 1.5rem नीचे रहेगा */
+
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    cursor: pointer;
+
+    /* नया एनिमेटेड ग्रेडिएंट बैकग्राउंड */
+    background: linear-gradient(90deg, var(--accent-hover), var(--accent-color), var(--gradient-end), var(--accent-hover));
+    background-size: 300% 100%;
+    transition: background-position 0.5s ease;
+}
+
+.generate-qr-btn:hover {
+    background-position: 100% 0;
+    /* होवर पर शिमर इफ़ेक्ट */
+}
+
+/* =================================================================
+   2. साइडबार पैनल (दाईं ओर)
+   ================================================================= */
+.qr-app-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.qr-preview-container,
+.customization-accordion {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+/* नया और बेहतर कोड */
+.qr-preview-container {
+    background-color: #fff;
+    /* सफेद कार्ड अब बाहरी कंटेनर है */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#qrcode-preview {
+    width: 100%;
+    max-width: 256px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    /* यहाँ से बैकग्राउंड और पैडिंग हटा दी गई है */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#qrcode-preview:hover {
+    transform: scale(1.05);
+}
+
+.download-options {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 256px;
+}
+
+.download-btn {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-secondary);
+}
+
+.download-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background-color: var(--bg-color);
+}
+
+/* अकॉर्डियन */
+.accordion-item {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.accordion-header::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    transition: transform 0.3s ease;
+}
+
+details[open]>.accordion-header::after {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.accordion-content .input-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 44px;
+    height: 44px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+input[type="color"]::-moz-color-swatch {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* =================================================================
+   मेंटेनेंस नोटिस की स्टाइलिंग
+   ================================================================= */
+.maintenance-notice {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+    width: 100%;
+}
+
+.maintenance-notice i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    opacity: 0.7;
+    margin-bottom: 1rem;
+}
+
+.maintenance-notice h2 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.maintenance-notice p {
+    font-size: 1rem;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+
+/* सोशल मीडिया इनपुट के लिए स्टाइल */
+.input-with-prefix {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    transition: all 0.3s ease;
+}
+.input-with-prefix:focus-within {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+.url-prefix {
+    padding-left: 12px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+.input-with-prefix input {
+    border: none;
+    background: transparent;
+    padding-left: 5px;
+}
+.input-with-prefix input:focus {
+    box-shadow: none; /* बाहरी div पर शैडो है, इसलिए इनपुट पर नहीं चाहिए */
+}
+
+
+/* ye profile ke liye hai */
+
+.subsection-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Converter - TheToolDrawer</title>
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/tools/case-converter.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/tools/case-converter.js" defer></script>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="../index.html" class="logo">TheToolDrawer</a>
+            <div class="nav-center">
+                <div class="search-wrapper">
+                    <input type="text" id="search-bar" placeholder="Search for a tool...">
+                    <button class="search-button" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../blog.html">Blog</a></li>
+                </ul>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" />
+                        <div class="slider round">
+                            <i class="fa-solid fa-sun sun-icon"></i>
+                            <i class="fa-solid fa-moon moon-icon"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1>Case Converter</h1>
+                <p>Easily convert text between different letter cases with a single click.</p>
+            </div>
+
+            <div class="case-converter-app">
+                <div class="app-grid">
+                    <div class="input-column">
+                        <label for="input-text">Your Text</label>
+                        <textarea id="input-text" rows="10" placeholder="Type or paste your text here..."></textarea>
+
+                        <div class="conversion-buttons">
+                            <button id="btn-sentence-case" class="case-btn">Sentence case</button>
+                            <button id="btn-lower-case" class="case-btn">lower case</button>
+                            <button id="btn-upper-case" class="case-btn">UPPER CASE</button>
+                            <button id="btn-capitalized-case" class="case-btn">Capitalized Case</button>
+                            <button id="btn-alternating-case" class="case-btn">aLtErNaTiNg cAsE</button>
+                            <button id="btn-title-case" class="case-btn">Title Case</button>
+                            <button id="btn-inverse-case" class="case-btn">InVeRsE CaSe</button>
+                        </div>
+
+                        <div class="utility-buttons-left">
+                            <button id="btn-clear" class="util-btn btn-danger"><i class="fa-solid fa-trash"></i> Clear
+                                All</button>
+                        </div>
+                    </div>
+
+                    <div class="output-column">
+                        <label for="output-text">Converted Text</label>
+                        <textarea id="output-text" rows="10" readonly
+                            placeholder="Your result will appear here..."></textarea>
+
+                        <div class="output-stats">
+                            <span>Words: <strong id="output-words">0</strong></span>
+                            <span>Characters: <strong id="output-chars">0</strong></span>
+                        </div>
+
+                        <div class="utility-buttons-right">
+                            <button id="btn-copy" class="util-btn"><i class="fa-solid fa-copy"></i> Copy</button>
+                            <button id="btn-download" class="util-btn"><i class="fa-solid fa-download"></i> Download
+                                .txt</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 TheToolDrawer. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

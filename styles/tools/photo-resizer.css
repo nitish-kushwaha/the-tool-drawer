@@ -1,0 +1,345 @@
+/* =================================================================
+   फोटो रिसाइज़र - फाइनल क्लीन CSS
+   ================================================================= */
+.tool-container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.photo-resizer-app {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px -2px var(--shadow-color);
+}
+
+/* अपलोड सेक्शन */
+.upload-section .drop-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 400px;
+    border: 3px dashed var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-section .drop-zone:hover,
+.upload-section .drop-zone.dragover {
+    border-color: var(--accent-color);
+    background-color: var(--bg-color);
+}
+
+.upload-section .drop-zone i {
+    font-size: 4rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.upload-section .drop-zone span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.upload-section .drop-zone p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+/* एडिटर लेआउट */
+.editor-main-area {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .editor-main-area {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* इमेज एडिटर (बाईं ओर) */
+.image-editor-container .image-wrapper {
+    width: 100%;
+    height: 500px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+#source-image {
+    display: block;
+    max-width: 100%;
+}
+
+.cropper-toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+}
+
+.cropper-toolbar button {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cropper-toolbar button:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* साइडबार: प्रीव्यू और कंट्रोल्स (दाईं ओर) */
+.preview-and-download-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.preview-and-download-container h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: 0;
+    text-align: center;
+}
+
+.preview-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
+
+.customization-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.option-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.preset-ratios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 0.5rem;
+}
+
+.ratio-btn {
+    padding: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--bg-color);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.ratio-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.ratio-btn.active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+}
+
+.custom-dimensions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.custom-dimensions input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+
+.custom-dimensions input[type=number]::-webkit-inner-spin-button,
+.custom-dimensions input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-dimensions span {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.quality-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#quality-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: transparent;
+    cursor: pointer;
+    margin-top: .5rem
+}
+
+input[type=range]:focus {
+    outline: none
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, var(--accent-color) 0%, var(--accent-color) var(--value, 90%), var(--border-color) var(--value, 90%), var(--border-color) 100%);
+    border-radius: 5px
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+    margin-top: -8px
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 5px
+}
+
+input[type=range]::-moz-range-progress {
+    background-color: var(--accent-color);
+    height: 8px;
+    border-radius: 5px
+}
+
+input[type=range]::-moz-range-thumb {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1)
+}
+
+/* फाइनल एक्शन बटन्स */
+.final-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#crop-download-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    background: linear-gradient(90deg, var(--accent-hover), var(--accent-color), var(--gradient-end), var(--accent-hover));
+    background-size: 300% 100%;
+    transition: background-position .5s ease
+}
+
+#crop-download-btn:hover {
+    background-position: 100% 0
+}
+
+#upload-new-btn {
+    width: auto;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    padding: .5rem;
+    text-decoration: underline;
+    margin-top: .5rem;
+    align-self: center
+}
+
+#upload-new-btn:hover {
+    color: var(--accent-color)
+}
+
+
+
+/* tool header ki design */
+
+.tool-header {
+    text-align: center;
+    margin-bottom: 2.5rem; /* थोड़ा ज़्यादा स्पेस */
+}
+
+.tool-header h1 {
+    font-size: 2.8rem; /* थोड़ा बड़ा फ़ॉन्ट */
+    color: var(--text-primary);
+    display: flex; /* आइकॉन और टेक्स्ट को अलाइन करने के लिए */
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* आइकॉन और टेक्स्ट के बीच स्पेस */
+}
+
+.tool-header h1 i {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+}
+
+.tool-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+    max-width: 400px; /* सबटाइटल को बहुत ज़्यादा फैलने से रोकना */
+    margin-left: auto;
+    margin-right: auto;
+}

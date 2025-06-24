@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - TheToolDrawer</title>
+    
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/blog.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <script src="scripts/main.js" defer></script>
+</head>
+<body id="top">
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">TheToolDrawer</a>
+            
+            <div class="nav-center">
+                <div class="search-wrapper">
+                    <input type="text" id="search-bar" placeholder="Search for a tool...">
+                    <button class="search-button" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                </ul>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" />
+                        <div class="slider round">
+                            <i class="fa-solid fa-sun sun-icon"></i>
+                            <i class="fa-solid fa-moon moon-icon"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1 class="page-title">The ToolDrawer Blog</h1>
+            <p class="page-subtitle">Insights, tutorials, and updates about our tools.</p>
+        </section>
+
+        <div class="blog-container">
+            
+            <article class="blog-card">
+                <div class="blog-card-content">
+                    <span class="blog-card-category">TUTORIAL</span>
+                    <h2 class="blog-card-title">A Complete Guide to the Word Counter Tool</h2>
+                    <p class="blog-card-excerpt">Learn how our Word Counter tool works, its features, and how it can help you write more effectively by keeping track of word and character counts in real-time.</p>
+                    <div class="blog-card-actions">
+                        <a href="blog_posts/what-is-a-word-counter.html" class="btn btn-primary">Read More</a>
+                        <a href="tools/word-counter.html" class="btn btn-secondary">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-content">
+                    <span class="blog-card-category">GUIDE</span>
+                    <h2 class="blog-card-title">Understanding Case Conversion: From Uppercase to Title Case</h2>
+                    <p class="blog-card-excerpt">Ever wondered about the different text cases? This guide explains uppercase, lowercase, sentence case, and title case, and how our tool can help you switch between them.</p>
+                    <div class="blog-card-actions">
+                        <a href="blog_posts/how-to-use-case-converter.html" class="btn btn-primary">Read More</a>
+                        <a href="tools/case-converter.html" class="btn btn-secondary">Use Tool <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            </div>
+
+
+            </div>
+
+        <nav class="pagination" aria-label="Blog navigation">
+            <a href="#" class="pagination-link disabled">Previous</a>
+            <a href="#" class="pagination-link active">1</a>
+            <a href="#" class="pagination-link">2</a>
+            <a href="#" class="pagination-link">3</a>
+            <span class="pagination-ellipsis">...</span>
+            <a href="#" class="pagination-link">10</a>
+            <a href="#" class="pagination-link">Next</a>
+        </nav>
+
+    </main>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 TheToolDrawer. All Rights Reserved.</p>
+    </footer>
+
+    <a href="#top" id="back-to-top-btn" title="Go to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,462 @@
+/* =================================================================
+   1. गूगल फ़ॉन्ट इम्पोर्ट (Google Font Import)
+   ================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* =================================================================
+   2. CSS वेरिएबल्स (थीमिंग के लिए)
+   ================================================================= */
+:root {
+    /* डिफ़ॉल्ट (लाइट मोड) कलर्स */
+    --bg-color: #f4f7fc;
+    --header-bg: #ffffff;
+    --card-bg: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
+    --border-color: #e2e8f0;
+    --shadow-color: rgba(99, 102, 241, 0.1);
+    --gradient-start: #3b82f6;
+    --gradient-end: #6366f1;
+}
+
+html[data-theme='dark'] {
+    /* डार्क मोड कलर्स */
+    --bg-color: #0f172a;
+    --header-bg: #1e293b;
+    --card-bg: #1e293b;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-color: #60a5fa;
+    --accent-hover: #3b82f6;
+    --border-color: #334155;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --gradient-start: #60a5fa;
+    --gradient-end: #818cf8;
+}
+
+/* =================================================================
+   3. ग्लोबल स्टाइल्स (Global Styles)
+   ================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* =================================================================
+   4. हेडर और नेविगेशन (Header & Navigation)
+   ================================================================= */
+.main-header {
+    background-color: var(--header-bg);
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.9rem;
+    /* थोड़ा बड़ा और आकर्षक बनाने के लिए */
+    font-weight: 800;
+    /* टेक्स्ट को थोड़ा और मोटा (bold) किया */
+    text-decoration: none;
+    display: inline-block;
+    /* रेंडरिंग को और स्टेबल बनाने के लिए */
+
+    /* फॉलबैक (Fallback) कलर */
+    /* यह उन पुराने ब्राउज़र्स के लिए है जो टेक्स्ट ग्रेडिएंट सपोर्ट नहीं करते। */
+    /* अगर ग्रेडिएंट काम नहीं करेगा, तो लोगो इस रंग में दिखेगा, गायब नहीं होगा। */
+    color: var(--accent-color);
+
+    /* मॉडर्न ब्राउज़र्स के लिए ग्रेडिएंट टेक्स्ट */
+    background: linear-gradient(60deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+
+    /* यह सुनिश्चित करता है कि ग्रेडिएंट सभी मुख्य ब्राउज़र्स पर काम करे */
+    -webkit-background-clip: text;
+    /* Chrome, Safari, etc. */
+    -moz-background-clip: text;
+    /* Firefox */
+    background-clip: text;
+
+    /* यह टेक्स्ट के रंग को पारदर्शी बनाता है ताकि बैकग्राउंड का ग्रेडिएंट दिखे */
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+#search-bar {
+    border: none;
+    background: transparent;
+    width: 100%;
+    padding: 10px 5px;
+    font-size: 1rem;
+    outline: none;
+    color: var(--text-primary);
+}
+
+#search-bar:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    /* गोलाकार बनाने के लिए */
+    padding-left: 15px;
+    transition: all 0.3s ease;
+    max-width: 400px;
+    width: 100%;
+}
+
+.search-wrapper:focus-within {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+.search-button {
+    background-color: var(--accent-color);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: var(--accent-hover);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--accent-color);
+}
+
+/* =================================================================
+   5. थीम स्विच टॉगल (Theme Switch Toggle)
+   ================================================================= */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-color);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--accent-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
+}
+
+.slider .sun-icon,
+.slider .moon-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--header-bg);
+    font-size: 14px;
+}
+
+.slider .sun-icon {
+    left: 6px;
+}
+
+.slider .moon-icon {
+    right: 6px;
+}
+
+/* =================================================================
+   6. हीरो सेक्शन (Hero Section)
+   ================================================================= */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 50vh;
+    padding: 4rem 2rem;
+    color: #fff;
+    /* टेक्स्ट का रंग हमेशा सफेद रहेगा */
+    background: linear-gradient(-45deg, var(--gradient-end), var(--gradient-start), #2b5876, #4e4376);
+    background-size: 400% 400%;
+    animation: backgroundPan 15s ease infinite;
+}
+
+
+@keyframes backgroundPan {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* हीरो सेक्शन के टेक्स्ट का रंग हमेशा सफेद रखने के लिए यह सुनिश्चित करें */
+.hero-title,
+.hero-subtitle {
+    color: #fff;
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-content {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ( बाकी का CSS जैसे Tools Section, Footer, Back-to-Top पहले जैसा ही है, बस नए वेरिएबल्स का इस्तेमाल कर रहा है ) */
+/* =================================================================
+   7. टूल्स सेक्शन और कार्ड्स (Tools Section & Cards)
+   ================================================================= */
+.tools-section {
+    padding: 4rem 5%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+}
+
+.tool-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.tool-card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px var(--shadow-color);
+}
+
+.tool-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.tool-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.tool-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.tool-link {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.tool-link:hover {
+    background-color: var(--accent-hover);
+}
+
+.disabled-link {
+    background-color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+.disabled-link:hover {
+    background-color: var(--text-secondary);
+}
+
+/* (Footer, Back-to-top, Responsive sections...) */
+.main-footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#back-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s, visibility 0.4s, background-color 0.3s;
+}
+
+#back-to-top-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+#back-to-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-center {
+        order: 2;
+        width: 90%;
+    }
+
+    .nav-right {
+        order: 3;
+    }
+
+    .logo {
+        order: 1;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}

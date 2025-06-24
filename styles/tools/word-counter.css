@@ -1,0 +1,199 @@
+/* =================================================================
+   1. टूल का मुख्य कंटेनर और हेडर
+   ================================================================= */
+.tool-container {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.tool-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.tool-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+}
+
+.tool-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+
+/* =================================================================
+   2. मुख्य एप्लीकेशन UI (The App UI)
+   ================================================================= */
+.word-counter-app {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+}
+
+
+/* =================================================================
+   3. टेक्स्ट एरिया (Text Area)
+   ================================================================= */
+#text-input {
+    width: 100%;
+    min-height: 250px;
+    padding: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    resize: vertical; /* यूजर इसे सिर्फ वर्टिकली खींच सकता है */
+    transition: all 0.3s ease;
+}
+
+#text-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px var(--shadow-color);
+}
+
+
+/* =================================================================
+   4. स्टैट्स (Stats) कंटेनर
+   ================================================================= */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.stat-box {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    /* जब नंबर अपडेट होगा तो एनिमेशन के लिए */
+    transition: transform 0.2s ease; 
+}
+
+/* यह क्लास हम JS से जोड़ेंगे जब नंबर अपडेट होगा */
+.stat-number.updated {
+    transform: scale(1.2);
+}
+
+/* =================================================================
+   5. एक्शन बटन्स (नया और बेहतर डिज़ाइन)
+   ================================================================= */
+.action-buttons {
+    display: grid; /* फ्लेक्स की जगह ग्रिड का इस्तेमाल */
+    grid-template-columns: 1fr 1fr; /* 50-50 के दो बराबर कॉलम */
+    gap: 1rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* सभी बटनों के लिए कॉमन स्टाइल */
+.action-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px; /* बटन को थोड़ा बड़ा बनाया */
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.action-buttons .btn i {
+    font-size: 1.1rem;
+    margin-right: 0.75rem;
+}
+
+/* क्लिक करने पर बटन दबने का इफ़ेक्ट */
+.action-buttons .btn:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+
+/* कॉपी बटन का स्टाइल */
+.action-buttons .btn-secondary {
+    background-color: var(--card-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+.action-buttons .btn-secondary:hover {
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* क्लियर बटन का स्टाइल (नया लाल रंग) */
+:root {
+    --danger-color: #ef4444;
+    --danger-hover-color: #dc2626;
+}
+html[data-theme='dark'] {
+    --danger-color: #b91c1c;
+    --danger-hover-color: #ef4444;
+}
+
+.action-buttons .btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+    border: 1px solid transparent;
+}
+.action-buttons .btn-danger:hover {
+    background-color: var(--danger-hover-color);
+    box-shadow: 0 4px 15px -5px var(--danger-color);
+}
+
+/* =================================================================
+   2. मुख्य एप्लीकेशन UI (The App UI) - नया ग्रिड लेआउट
+   ================================================================= */
+.word-counter-app {
+    display: grid;
+    grid-template-columns: 1fr; /* मोबाइल पर डिफ़ॉल्ट एक कॉलम */
+    gap: 2rem; /* कॉलम के बीच स्पेस */
+    
+    /* बाकी पुरानी स्टाइल वैसी ही रहेगी */
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+}
+
+/* 992px से बड़ी स्क्रीन के लिए दो कॉलम का लेआउट */
+@media (min-width: 992px) {
+    .word-counter-app {
+        grid-template-columns: 1fr 1fr; /* 50% - 50% के दो बराबर कॉलम */
+    }
+}
+
+/* दाईं ओर के कॉलम के लिए फ्लेक्स ताकि बटन नीचे रहें */
+.sidebar-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
