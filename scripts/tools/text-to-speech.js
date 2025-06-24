@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. सभी ज़रूरी HTML एलिमेंट्स को चुनना
     const textInput = document.getElementById('tts-text-input');
-    const voiceSelectContainer = document.querySelector('.voice-profiles');
+    const maleVoicesContainer = document.getElementById('male-voices');
+    const femaleVoicesContainer = document.getElementById('female-voices');
     const rateSlider = document.getElementById('rate-slider');
     const pitchSlider = document.getElementById('pitch-slider');
     const speakBtn = document.getElementById('speak-btn');
@@ -10,34 +13,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let availableVoices = [];
     let selectedVoiceName = '';
 
-    // ब्राउज़र से उपलब्ध आवाज़ों की लिस्ट लोड करना
+    // 2. ब्राउज़र से उपलब्ध आवाज़ों की लिस्ट लोड करना
     const populateVoiceList = () => {
+        // अगर आवाज़ें पहले से लोड हो चुकी हैं, तो दोबारा न करें
+        if (availableVoices.length > 0) return;
+
         availableVoices = speechSynthesis.getVoices().filter(voice => voice.lang.startsWith('en'));
         
-        const maleContainer = document.getElementById('male-voices');
-        const femaleContainer = document.getElementById('female-voices');
+        const maleGrid = maleVoicesContainer.querySelector('.voice-profile-grid');
+        const femaleGrid = femaleVoicesContainer.querySelector('.voice-profile-grid');
         
-        maleContainer.innerHTML = '<h4>Male</h4><div class="voice-profile-grid"></div>';
-        femaleContainer.innerHTML = '<h4>Female</h4><div class="voice-profile-grid"></div>';
+        if (!maleGrid || !femaleGrid) return; // अगर HTML एलिमेंट मौजूद नहीं है
 
-        const maleGrid = maleContainer.querySelector('.voice-profile-grid');
-        const femaleGrid = femaleContainer.querySelector('.voice-profile-grid');
+        maleGrid.innerHTML = ''; // पुराना कंटेंट साफ़ करें
+        femaleGrid.innerHTML = ''; // पुराना कंटेंट साफ़ करें
 
         availableVoices.forEach(voice => {
             const button = document.createElement('button');
             button.className = 'voice-profile';
             button.dataset.voiceName = voice.name;
             
-            let iconClass = 'fa-solid fa-user';
-            let container = maleGrid;
-
-            if (voice.gender === 'female' || voice.name.toLowerCase().includes('female')) {
-                iconClass = 'fa-solid fa-user-female'; // Note: this icon might not exist, fa-user is safer
-                container = femaleGrid;
-            } else if (voice.name.toLowerCase().includes('male')) {
-                 iconClass = 'fa-solid fa-user-male'; // Note: might not exist
-                 container = maleGrid;
-            }
+            // जेंडर के हिसाब से आइकॉन और कंटेनर चुनना
+            const iconClass = 'fa-solid fa-user';
+            let container = voice.name.toLowerCase().includes('male') ? maleGrid : femaleGrid;
             
             button.innerHTML = `<i class="${iconClass}"></i><span>${voice.name.split(' ')[0]}</span>`;
             
@@ -50,74 +48,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // डिफ़ॉल्ट रूप से पहली आवाज़ को चुनना
-        if(maleGrid.children.length > 0) {
-            maleGrid.children[0].click();
-        } else if (femaleGrid.children.length > 0) {
-            femaleGrid.children[0].click();
+        const firstVoiceButton = maleGrid.children[0] || femaleGrid.children[0];
+        if (firstVoiceButton) {
+            firstVoiceButton.click();
         }
     };
 
-    populateVoiceList();
+    // आवाज़ें लोड होने में समय लग सकता है, इसलिए इवेंट का इंतज़ार करें
     if (speechSynthesis.onvoiceschanged !== undefined) {
         speechSynthesis.onvoiceschanged = populateVoiceList;
     }
+    populateVoiceList(); // तुरंत चलाने की कोशिश करें
 
-    // मुख्य "Convert to Speech" बटन का लॉजिक
-   speakBtn.addEventListener('click', async () => {
-    const text = textInput.value.trim();
-    if (!text) {
-        alert('Please enter some text.');
-        return;
-    }
-    if (!selectedVoiceName) {
-        alert('Please select a voice first.');
-        return;
-    }
 
-    ttsStatus.innerHTML = '<i class="fa-solid fa-spinner"></i> Generating audio...';
-    ttsStatus.classList.add('loading');
-    audioPlayer.style.display = 'none';
-
-    try {
-        // --- यह मुख्य बदलाव है ---
-        const rate = parseFloat(rateSlider.value); // वैल्यू को नंबर में बदलना
-        const pitchValue = parseFloat(pitchSlider.value); // वैल्यू को नंबर में बदलना
-        
-        // हमारी 0-2 की रेंज को गूगल की -20 से +20 की रेंज में बदलना
-        const pitch = (pitchValue - 1) * 20; 
-
-        const response = await fetch('/.netlify/functions/text-to-speech', {
-            method: 'POST',
-            body: JSON.stringify({
-                text: text,
-                voiceName: selectedVoiceName,
-                speakingRate: rate, // अब यह सही नंबर है
-                pitch: pitch      // अब यह सही रेंज और नंबर है
-            })
-        });
-        // --- बदलाव यहाँ खत्म ---
-
-        if (!response.ok) {
-            // सर्वर से मिले एरर को दिखाना
-            const errorData = await response.json();
-            console.error('API Error:', errorData);
-            throw new Error('Failed to generate audio. Please check the function logs on Netlify.');
+    // 3. मुख्य "Convert to Speech" बटन का लॉजिक
+    speakBtn.addEventListener('click', async () => {
+        const text = textInput.value.trim();
+        if (!text) {
+            alert('Please enter some text.');
+            return;
+        }
+        if (!selectedVoiceName) {
+            alert('Please select a voice first. It might still be loading.');
+            return;
         }
 
-        const data = await response.json();
-        const audioSrc = `data:audio/mp3;base64,${data.audioContent}`;
-        
-        audioPlayer.src = audioSrc;
-        audioPlayer.classList.add('show'); // CSS क्लास से दिखाएं
-        audioPlayer.style.display = 'block';
-        audioPlayer.play();
+        ttsStatus.innerHTML = '<i class="fa-solid fa-spinner"></i> Generating audio...';
+        ttsStatus.classList.add('loading');
+        audioPlayer.style.display = 'none';
 
-        ttsStatus.innerHTML = 'Audio ready! Playing...';
-        ttsStatus.classList.remove('loading');
+        try {
+            const rate = parseFloat(rateSlider.value);
+            const pitchValue = parseFloat(pitchSlider.value);
+            const pitch = (pitchValue - 1) * 20;
 
-    } catch (error) {
-        console.error('Error:', error);
-        ttsStatus.textContent = 'Error! Could not generate audio.';
-        ttsStatus.classList.remove('loading');
-    }
+            const response = await fetch('/.netlify/functions/text-to-speech', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    text: text,
+                    voiceName: selectedVoiceName,
+                    speakingRate: rate,
+                    pitch: pitch
+                })
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Failed to generate audio: ${errorText}`);
+            }
+
+            const data = await response.json();
+            if (!data.audioContent) {
+                throw new Error("Received empty audio content from server.");
+            }
+            
+            const audioSrc = `data:audio/mp3;base64,${data.audioContent}`;
+            
+            audioPlayer.src = audioSrc;
+            audioPlayer.style.display = 'block';
+            audioPlayer.play();
+
+            ttsStatus.textContent = 'Audio ready! Playing...';
+            ttsStatus.classList.remove('loading');
+
+        } catch (error) {
+            console.error('Error:', error);
+            ttsStatus.textContent = 'Error! Could not generate audio.';
+            ttsStatus.classList.remove('loading');
+        }
+    });
 });
