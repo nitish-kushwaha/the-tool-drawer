@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter - TheToolDrawer</title>
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/tools/unit-converter.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/tools/unit-converter.js" defer></script>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">TheToolDrawer</a>
+
+            <div class="nav-center">
+                <div class="search-wrapper">
+                    <input type="text" id="search-bar" placeholder="Search for a tool...">
+                    <button class="search-button" aria-label="Search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" />
+                        <div class="slider round">
+                            <i class="fa-solid fa-sun sun-icon"></i>
+                            <i class="fa-solid fa-moon moon-icon"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1><i class="fa-solid fa-ruler-combined"></i> Unit Converter</h1>
+                <p>Convert units for length, weight, temperature, and more.</p>
+            </div>
+
+            <div class="unit-converter-app">
+                <div class="category-selector">
+                    <label for="category-select">Select Conversion Type</label>
+                    <select id="category-select">
+                        <option value="length">Length</option>
+                        <option value="area">Area</option>
+                        <option value="volume">Volume</option>
+                        <option value="weight">Weight</option>
+                        <option value="temperature">Temperature</option>
+                        <option value="speed">Speed</option>
+                        <option value="time">Time</option>
+                        <option value="pressure">Pressure</option>
+                        <option value="energy">Energy</option>
+                        <option value="frequency">Frequency</option>
+                        <option value="digital_storage">Digital Storage</option>
+                        <option value="data_transfer_rate">Data Transfer Rate</option>
+                        <option value="fuel_economy">Fuel Economy</option>
+                        <option value="plane_angle">Plane Angle</option>
+                    </select>
+                </div>
+
+                <div class="converter-interface">
+                    <div class="converter-side">
+                        <label for="from-unit-select">From</label>
+                        <select id="from-unit-select">
+                        </select>
+                        <input type="number" id="input-value" value="1">
+                    </div>
+
+                    <div class="swap-button-container">
+                        <button id="swap-btn" title="Swap Units">
+                            <i class="fa-solid fa-right-left"></i>
+                        </button>
+                    </div>
+
+                    <div class="converter-side">
+                        <label for="to-unit-select">To</label>
+                        <select id="to-unit-select">
+                        </select>
+                        <input type="text" id="output-value" readonly>
+                    </div>
+                </div>
+
+                <div class="result-text-container">
+                    <p id="result-text">1 Meter = 3.28084 Feet</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 TheToolDrawer. All Rights Reserved.</p>
+    </footer>
+
+
+</body>
+
+</html>
